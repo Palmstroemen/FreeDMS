@@ -15,16 +15,14 @@ Like projects almost always have some administrational stuff, some financial iss
 So i'd like to add folders like these to my projects when needed:
 
     _admin
-    
     _information
-    
     _communication
-    
     _finance
     _legal
     _tech
     _work
-    _documentation¸
+    _documentation
+    
 _(The leading Underscore marks them as my special freeDMS-folders and keeps them all together if there are other folders of subprojects in my hierarchy)_
 
 Each folder might have some standardized subfolders like
