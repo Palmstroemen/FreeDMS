@@ -5,7 +5,7 @@ This makes project structures repeatable and machine readable and makes exchangi
 ## Motivation
 Why does my TV find the videos, pics and music on my computer? Because they are easy to find in the folders _videos¸ _pictures, _music which are located in my home directory. Then there are some APIs and stuff to retrieve it. But the principal idea is standaridzation. Everyone knows where to put his pictures.
 
-Now when organizing my documents in the ¸_documents¸ folder, I'm completely free to organize my stuff in any structure of folders as I want. That's what I want to keep. But as anyone organizes his folders in a different way, it's difficult if not impossible for computers to analyze this different structures.
+Now when organizing my documents in the '_documents' folder, I'm completely free to organize my stuff in any structure of folders as I want. That's what I want to keep. But as anyone organizes his folders in a different way, it's difficult if not impossible for computers to analyze this different structures.
 I.E. I like to organize my stuff in projects. Building a quite fancy hierarchy of projects and subprojects. But once that done, I have to rebuild this project hierarchy again in my mail client, and in my financial software again, ... keeping all this in sync is an everlasting source of inconsistency.
 
 ## Principle
@@ -26,17 +26,19 @@ So i'd like to add folders like these to my projects when needed:
 _(The leading Underscore marks them as my special freeDMS-folders and keeps them all together if there are other folders of subprojects in my hierarchy)_
 
 Each folder might have some standardized subfolders like
-_finance/_purchases
-_finance/_sales
-_finance/_AppData
+
+    _finance/_purchases
+    _finance/_sales
+    _finance/_AppData
 
 or like
-_work/_preparations
-_work/_plan
-_work/_act
-_work/_check
-_work/_learnings
-_work/_AppData
+
+    _work/_preparations
+    _work/_plan
+    _work/_act
+    _work/_check
+    _work/_learnings
+    _work/_AppData
 
 "When needed" means, that these folders are not always there by default, but they are added on demand.
 The trick is to always add the same folders and to establish a universal structure.
@@ -51,7 +53,7 @@ The trick is to always add the same folders and to establish a universal structu
 
 ## An exemple
 Imagine the process of __booking a flight__. The filght-company might send tagged mails like:
-Bill.pdf (tagged with _finance/_purchases) will find its way into the folder _finance/_purchases
+Bill.pdf (tagged with '_finance/_purchases') will find its way into the folder _finance/_purchases
 AGBs.pdf (tagged with _legal) will find its way into the (project-)folder _legal.
 Tickets.pdf (tagged with _work/_preparations)
 Infos.pdf (tagged with _information)
