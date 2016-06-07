@@ -13,9 +13,13 @@ Now the idea is to add some standardized folders to my projectfolders (on demand
 Like projects almost always have some administrational stuff, some financial issues, some legal issues, maybe some technical issues.
 
 So i'd like to add folders like these to my projects when needed:
-    ^_admin^
+
+    _admin
+    
     _information
+    
     _communication
+    
     _finance
     _legal
     _tech
