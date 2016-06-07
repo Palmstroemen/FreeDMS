@@ -3,24 +3,24 @@ A structured way to organize your data in standardized folders.
 This makes project structures repeatable and machine readable and makes exchanging with others simple.
 
 ## Motivation
-Why does my TV find the videos, pics and music on my computer? Because they are easy to find in the folders videos, pictures, music which are located in my home directory. Then there are some APIs and stuff to retrieve it. But the principal idea is standaridzation.
+Why does my TV find the videos, pics and music on my computer? Because they are easy to find in the folders ¸_videos¸, ¸_pictures¸, ¸_music¸ which are located in my home directory. Then there are some APIs and stuff to retrieve it. But the principal idea is standaridzation. Everyone knows where to put his pictures.
 
-Now when organizing my documents in the "my documents" folder, I'm completely free to organize my stuff in any structure of folders as I want. That's what I want to keep. But as anyone organizes his folders in a different way, it's difficult if not impossible for computers to analyze this different structures.
-I.E. I like to organize my stuff in projects. Building a quite fancy hierarchy of projects and subprojects. Now in my mail client I have to rebuild this project hierarchy again, and in my financial software again, ... keeping all this in sync is an everlasting source of inconsistency.
+Now when organizing my documents in the ¸_documents¸ folder, I'm completely free to organize my stuff in any structure of folders as I want. That's what I want to keep. But as anyone organizes his folders in a different way, it's difficult if not impossible for computers to analyze this different structures.
+I.E. I like to organize my stuff in projects. Building a quite fancy hierarchy of projects and subprojects. But once that done, I have to rebuild this project hierarchy again in my mail client, and in my financial software again, ... keeping all this in sync is an everlasting source of inconsistency.
 
 ## Principle
 Now the idea is to add some standardized folders to my projectfolders (on demand - just if they are needed).
 Like projects almost always have some administrational stuff, some financial issues, some legal issues, maybe some technical issues.
 
 So i'd like to add these folders to my projects when needed.
-_admin
+¸_admin
 _information
 _communication
 _finance
 _legal
 _tech
 _work
-_documentation
+_documentation¸
 
 Each folder might have some standardized subfolders like
 _finance/_purchases
