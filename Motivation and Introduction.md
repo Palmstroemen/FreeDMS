@@ -3,9 +3,9 @@ A structured way to organize your data in standardized folders.
 This makes project structures repeatable and machine readable and makes exchanging with others simple.
 
 ## Motivation
-Why does my TV find the videos, pics and music on my computer? Because they are easy to find in the folders _videos¸ _pictures, _music which are located in my home directory. Then there are some APIs and stuff to retrieve it. But the principal idea is standaridzation. Everyone knows where to put his pictures.
+Why does my TV find the videos, pics and music on my computer? Because they are easy to find in the folders **_videos¸ _pictures, _music** which are located in my home directory. Then there are some APIs and stuff to retrieve it. But the principal idea is standaridzation. Everyone knows where to put his pictures.
 
-Now when organizing my documents in the '_documents' folder, I'm completely free to organize my stuff in any structure of folders as I want. That's what I want to keep. But as anyone organizes his folders in a different way, it's difficult if not impossible for computers to analyze this different structures.
+Now when organizing my documents in the **_documents** folder, I'm completely free to organize my stuff in any structure of folders as I want. That's what I want to keep. But as anyone organizes his folders in a different way, it's difficult if not impossible for computers to analyze this different structures.
 I.E. I like to organize my stuff in projects. Building a quite fancy hierarchy of projects and subprojects. But once that done, I have to rebuild this project hierarchy again in my mail client, and in my financial software again, ... keeping all this in sync is an everlasting source of inconsistency.
 
 ## Principle
@@ -46,15 +46,15 @@ The trick is to always add the same folders and to establish a universal structu
 ## Advantages
 
   * any software like my mailclient i.e. can read my project structure as it is represented by the path to my project:
-    home/Projects/Family/Holidays/2015_USA_Trip/_communication
+    **home/Projects/Family/Holidays/2015_USA_Trip/_communication**
     my financial software might have just access to all the _finance folders and subfolders.
   * Also I know exactly where to place my documents, my tickets, my bills, my informations and documentation and I'll finde them again in 20 years.
   * When sharing projects or parts of projects with others everyone immediately recognizes the same structures and finds his way easily.
 
 ## An exemple
 Imagine the process of __booking a flight__. The filght-company might send tagged mails like:
-Bill.pdf (tagged with '_finance/_purchases') will find its way into the folder _finance/_purchases
-AGBs.pdf (tagged with _legal) will find its way into the (project-)folder _legal.
+Bill.pdf (tagged with '_finance/_purchases') will find its way into the folder **_finance/_purchases**
+AGBs.pdf (tagged with _legal) will find its way into the (project-)folder **_legal**.
 Tickets.pdf (tagged with _work/_preparations)
 Infos.pdf (tagged with _information)
 : and so on.
