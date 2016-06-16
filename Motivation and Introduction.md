@@ -60,9 +60,10 @@ Infos.pdf (tagged with _information)
 When downloading my documents, my email-client asks me where to save the files. I browse to my holidays-folder and there it creates all the necessary folders if they do not already exist.
 
 The point is, that the folders are always called like "_finance" and not once "bills", next time "finances", "tickets", ...
+Also permissions might be given to these folders in a standardized way. Like my financial software might belong to a group "_access_finance". This group has access to all my "_finance" folders and each newly created folder "_finance" gives rights for reading and writing to the group "_access_finances".
 
 ## technically speaking
-This shall be realized by scripts that provide an API for the most common operating systems. It should be a lightweight layer above the operating system that anyone can easily add to his OS. The standard folders shall be localized later. So _legals might appear as "Rechtliches" in german and as "Legal affairs" in english. The user might even be able to call folders his own way. 
+All this shall be realized by scripts that provide an API for the most common operating systems. It should be a lightweight layer above the operating system that anyone can easily add to his OS. The standard folders shall be localized later. So _legals might appear as "Rechtliches" in german and as "Legal affairs" in english. The user might even be able to call folders his own way. 
 
 Once these scripts exist, programs can start to use this structures.
   * A file-browser could show such folders that do not exist yet in a semi-transparent way or with special icons. If you place a file in such a non existing folder, this folder is created. This way your projects are not filled up with a bunch of empty folders by default. 
