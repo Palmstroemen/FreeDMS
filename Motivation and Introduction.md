@@ -44,11 +44,11 @@ or like
 The trick is to always add the same folders and to establish a universal structure.
 
 ## Advantages
-  * any software like my mailclient i.e. can read my project structure as it is represented by the path to my project:
+   * I always know exactly where to place my documents, my tickets, my bills, my informations and documentation and I'll finde them again in 20 years.
+  * Any software like my mailclient i.e. can read my project structure as it is represented by the path to my project:
     **home/Projects/Family/Holidays/2015_USA_Trip/_communication**
-    my financial software might have just access to all the _finance folders and subfolders.
-  * Also I know exactly where to place my documents, my tickets, my bills, my informations and documentation and I'll finde them again in 20 years.
-  * When sharing projects or parts of projects with others everyone immediately recognizes the same structures and finds his way easily.
+  * Easy handling of permissions: My financial software might have just access to all the _finance folders and subfolders.
+  * When sharing projects or parts of projects with others everyone immediately recognizes the same structures and finds his way.
 
 ## An exemple
 Imagine the process of __booking a flight__. The filght-company might send tagged mails like:
