@@ -51,16 +51,18 @@ The trick is to always add the same folders and to establish a universal structu
   * When sharing projects or parts of projects with others everyone immediately recognizes the same structures and finds his way.
 
 ## An exemple
-Imagine the process of __booking a flight__. The filght-company might send tagged mails like:
-Bill.pdf (tagged with '_finance/_purchases') will find its way into the folder **_finance/_purchases**
-AGBs.pdf (tagged with _legal) will find its way into the (project-)folder **_legal**.
-Tickets.pdf (tagged with _work/_preparations)
-Infos.pdf (tagged with _information)
-: and so on.
+Imagine the process of __booking a flight__. Once I've booked my tickets, I often can download them as well as some legal documents and so on. I'm asked in the "save"-dialog where to save all the pdf-files. There I can navigate to my "Travels"-folder or create a new folder like "2015_USA_Trip". That's exactly where I navigate inside my projects hierarchy and create it respecively.
+
+The filght-company might one day send tagged mails like:
+* Bill.pdf (tagged with '_finance/_purchases') so it will find its way into the folder **_finance/_purchases**
+* AGBs.pdf (tagged with _legal) will find its way into the (project-)folder **_legal**.
+* Tickets.pdf (tagged with _work/_preparations)
+* Infos.pdf (tagged with _information)
+* : and so on.
 When downloading my documents, my email-client asks me where to save the files. I browse to my holidays-folder and there it creates all the necessary folders if they do not already exist.
 
 The point is, that the folders are always called like "_finance" and not once "bills", next time "finances", "tickets", ...
-Also permissions might be given to these folders in a standardized way. Like my financial software might belong to a group "_access_finance". This group has access to all my "_finance" folders and each newly created folder "_finance" gives rights for reading and writing to the group "_access_finances".
+Also when folders are created, permissions might be given to these folders according to a custom scheme. Like my financial software might belong to a group "_finance_rw". This group has access to all my "_finance" folders and each newly created folder "_finance" gives rights for reading and writing to the group "_finances_rw".
 
 ## not too much
 It's important that the number of standard folders in one level stays small and not everyone adds some folders to the structure as they think it might be fancy. So there should not be additional folders like _IBM_finances, _GOOGLE_finances, ... because IBM thinks it would be better to structureize the _finances into _in, _out, _offers and _bills and GOOGLE thinks it should be structured into _buy, _sell, _rent, _interests, ...
