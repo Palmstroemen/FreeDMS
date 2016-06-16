@@ -62,7 +62,7 @@ The filght-company might one day send tagged documents like:
 When downloading my documents, my email-client asks me where to save the files. I browse to my holidays-folder and there it creates all the necessary folders if they do not already exist.
 
 The point is, that the folders are always called like "_finance" and not once "bills", next time "finances", "tickets", ...
-Also when folders are created, permissions might be given to these folders according to a custom scheme. Like my financial software might belong to a group "_finance_rw". This group has access to all my "_finance" folders and each newly created folder "_finance" gives rights for reading and writing to the group "_finances_rw".
+Also when folders are created, permissions might be given to these folders according to a custom scheme. Like my financial software might belong to a group "_finance_rw". This group has access to all my "_finance" folders and each newly created folder "_finance" gives rights for reading and writing to the group "_finances_rw". So it will be automatically accessible for my financial software.
 
 ## not too much
 It's important that the number of standard folders in one level stays small and not everyone adds some folders to the structure as they think it might be fancy. So there should not be additional folders like _IBM_finances, _GOOGLE_finances, ... because IBM thinks it would be better to structureize the _finances into _in, _out, _offers and _bills and GOOGLE thinks it should be structured into _buy, _sell, _rent, _interests, ...
