@@ -44,7 +44,7 @@ or like
 The trick is to always add the same folders and to establish a universal structure.
 
 ## Advantages
-   * I always know exactly where to place my documents, my tickets, my bills, my informations and documentation and I'll finde them again in 20 years.
+  * I always know exactly where to place my documents, my tickets, my bills, my informations and documentation and I'll finde them again in 20 years.
   * Any software like my mailclient i.e. can read my project structure as it is represented by the path to my project:
     **home/Projects/Family/Holidays/2015_USA_Trip/_communication**
   * Easy handling of permissions: My financial software might have just access to all the _finance folders and subfolders.
