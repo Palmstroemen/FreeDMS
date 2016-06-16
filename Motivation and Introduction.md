@@ -25,7 +25,7 @@ So i'd like to add folders like these to my projects when needed:
     
 _(The leading Underscore marks these folers as my special freeDMS-folders and keeps them all together if there are other folders of subprojects in my hierarchy)_
 
-Each folder might on his own have some standardized subfolders like
+Each such folder might on his own have some standardized subfolders like
 
     _finance/_purchases
     _finance/_sales
