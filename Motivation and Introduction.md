@@ -5,11 +5,11 @@ This makes project structures repeatable and machine readable and makes exchangi
 ## Motivation
 Why does my TV find the videos, pics and music on my computer? Because they are easy to find in the folders **_videos¸ _pictures, _music** which are located in my home directory. Then there are some APIs and stuff to retrieve it. But the principal idea is standaridzation. Everyone knows where to put his pictures.
 
-Now when organizing my documents in the **_documents** folder, I'm completely free to organize my stuff in any structure of folders as I want. That's what I want to keep. But as anyone organizes his folders in a different way, it's difficult if not impossible for computers to analyze this different structures.
+When I'm organizing my documents in the **_documents** folder, I'm completely free to organize my stuff in any structure of folders as I want. That's what I want to keep. But as anyone organizes his folders in a different way, it's difficult if not impossible for computers to analyze this different structures.
 I for exemple like to organize my stuff in projects. Each folder might have several subfolders for subprojects or typical data. This way I'm building a quite fancy hierarchy of projects and subprojects. But once that done, I have to rebuild this project hierarchy again in my mail client, and in my financial software, maybe in my pictures folder and on my cellphone, ... keeping all this in sync is an everlasting source of inconsistency.
 
 ## Principle
-Now the idea is to still use folders for organizing my projects (projectfolders) and to *add some standardized folders* to my projectfolders (on demand - just if they are needed).
+The idea is to still use folders for organizing my projects (projectfolders) and to *add some standardized folders* to my projectfolders (on demand - just if they are needed).
 Projects almost always have some administrational stuff, some financial issues, some legal issues, maybe some technical issues and so on. These things should be placed always into the same subfolders of my project.
 
 So i'd like to add folders like these to my projects when needed:
