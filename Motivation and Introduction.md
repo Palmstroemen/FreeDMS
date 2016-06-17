@@ -66,4 +66,4 @@ Also when folders are created, permissions might be given to these folders accor
 
 ## not too much
 It's important that the number of standard folders in one level stays small and not everyone adds some folders to the structure as they think it might be fancy. So there should not be additional folders like _IBM_finances, _GOOGLE_finances, ... because IBM thinks it would be better to structureize the _finances into _in, _out, _offers and _bills and GOOGLE thinks it should be structured into _buy, _sell, _rent, _interests, ...
-So there is a primary structure of standard project folders that can be discussed but should be fixed once and then stay for quite a time. This basic structure can be found in the file: FreeDMS_template
+So there is a primary structure of standard project folders that can be discussed but should be fixed once and then stay for quite a time. This basic structure can be found in the file: FreeDMS_structure
