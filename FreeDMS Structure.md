@@ -5,18 +5,18 @@ AnyFolder
 
     _FeeDMS				(hidden?) contains dadministrative data for FreeDMS, DB_history, FreeDMS Version, SVN, ...
     	Context.file	a file that might contain the path for various users
-    _admin
-        DB_stakeholder	Accessrights (roles, groups, also "world", "projectmembers", ...)
-        DB_contacts		Database of contacts
+    _admin              
+        DB_stakeholder	Accessrights (roles, groups, also "world", "projectmembers", ...) maybe in _FreeDMS
+        DB_contacts		Database of contacts - maybe in _FreeDMS
     _inbox				everything that's not filed yet.
     _info				general infos that are necessary for the project 
     _communication      
-  	_drafts
-    	_up 			        communication to superproject
-  	_intern 		        communication within the project on the same level
-  	_extern 		        communication with externals (Web, public affairs, ...)
-  	_down 			        general communication to all subprojects (for singular communications use folder _up in subproject)
-  	_to 			communication to other projects
+  	    _drafts
+    	_up 			communication to superproject
+  	    _intern 		communication within the project on the same level
+  	    _extern 		communication with externals (Web, public affairs, ...)
+  	    _down 		    general communication to all subprojects (for singular communications use folder _up in subproject)
+  	    _to 			communication to other projects
     _finance
   	_drafts			
   	_offersIN		received offers
