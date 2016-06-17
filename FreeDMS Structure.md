@@ -2,6 +2,7 @@
 a first proposal for a structure.
 
 AnyFolder
+
         _FeeDMS				      (hidden?) contains dadministrative data for FreeDMS, 				DB_history, FreeDMS Version, SVN, UserRights …
     	Context.file		  a file that might contain the path for various users
         _admin
