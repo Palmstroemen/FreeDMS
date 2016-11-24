@@ -1,0 +1,5 @@
+_freeDMS
+
+This directory when added to any directory makes it a freeDMS project directory.
+It contains the administrative meta information for the project.
+Things like project partners, access-rights, ...

@@ -1,0 +1,28 @@
+#!/bin/bash
+# Copies a file into a freeDMS-directory.
+# If this freeDMS-directory doesn't exist, it's created.
+# Usage: prcp filename _directoryname
+
+set -eu
+# In case no directoryname is given return an usage statement.
+if [[ $# < 2 ]]; then
+	echo "Usage: $0 filename directoryname"
+	exit 1
+fi
+
+#(find -name $2 || echo " does not exist yet.")
+# Get the path to the freeDMS directory
+freeDMS_path=`__freeDMSpath`
+
+#Try to add it. If this fails, it's no valid freeDMS-directory.
+new_path=${freeDMS_path}/pradd $2 2>/dev/null
+echo "$new_path"
+if [[ "$new_path" == "Error" ]] 
+    then
+	echo "No valid freeDMS-directory"
+	exit 1
+    else
+	cp $1 $new_path
+	echo $new_path
+	exit 0
+fi

@@ -1,0 +1,5 @@
+#!/bin/bash
+# returns the signature of freeDMS-directories
+
+echo "_"
+

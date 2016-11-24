@@ -1,0 +1,8 @@
+#!/bin/sh
+# Transforms any directory into a project by adding a _freeDMS directory.
+# This _freeDMS directory contains some basic information
+# Already existing _freeDMS directories will not be overwritten due to the -r option.
+
+freeDMS_path=`__freeDMSpath`
+cp -r $freeDMS_path/Template/_freeDMS .
+

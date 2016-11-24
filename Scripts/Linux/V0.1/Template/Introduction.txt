@@ -1,0 +1,116 @@
+The main structure:
+Read this carefully and you'll understand freeDMS immediately.
+
+Principal ideas:
+
+1) You want to organize almost all your files in projects and subprojects.
+
+2) Each project is represented by a directory and may be organized in subprojects (subdirectories)
+   Exemple: Your family is a project. The members of the family are subprojects.
+              /family
+              /family/mother
+              /family/mother/job
+              /family/mother/health
+              /family/mother/tennis
+              /family/father
+              /family/father/job
+              /family/father/health
+              /family/father/choir
+              /family/child
+              /family/child/school
+              /family/child/scouts
+              /family/holidays
+              /family/holidays/2016_summer
+              /family/... you get the idea.
+
+            Your living situation is a project
+              /Home
+              /Home/House
+              /Home/Garden
+              /Home/Chalet
+
+            Your computers and mobiles are a project
+              /computers
+              /computers/this computer
+              /computers/mobileXY
+              /computers/tabletYZ
+
+            Your projects are projects
+              /wedding
+              /wedding/preparations
+              /wedding/church
+              /wedding/invitations
+
+  So in general you organize all your data in projects in a hierarchical order of your choice. 
+  You'll define master projects, subprojects, sub-subprojects and so on. 
+ 
+3) In most of these projects you will have recurring types of informations or parts of it. 
+   These types of information should be organized in all your projects and subprojects in the same way.
+   Priciples are:
+             /_admin          administrative issues like planning, organizing
+             /_infos          information collections, everything that 
+                              might be interesting for the project.
+             /_communication  various types of communication.
+                              communication with your team members (memos)
+                              communication to the world (website, advertisments)
+                              communication with subprojects ...
+             /_finance        you almost always have some financial issues.
+             /_legal          contracts, EULAs, NDAs, patents, ... lawsuits
+             /_tech           technical issues like programs, datasheets, drawings, ...
+             /_work           something like: preparation, ToDo, Do, Check, Iterations,
+             /_docu           documentation of your work, pictures, timesheets, ...
+             /_arcive         a graveyard for finished subprojects.
+             /_stuff          that you don't know where to put.
+
+   freeDMS provides a standardized structure for exactly this.
+   So we do not care how you name and organize your projects.
+   Whether you call it: /computers/mobileXY
+                    or: /Devices/myPhone
+   That's completely up to you, but freeDMS always provides you a directory like
+   _finance inside your projects if you need it. And it's always _finance and not 
+   once called '/Bills' and somewhere else '/Financial issues'.
+   So where to put the bill of your cellphone?
+   In: /computers/mobileXY/_finance
+   Or: /Devices/myPhone/_finance   if you called your projects this way.
+
+4) Some important features of this structure are: 
+     +) Everybody can understand it immediately.
+     +) It's easy to communicate. New team members easily find their way.
+     +) There is a clear lay out. (Just a view standard directories in one hierarchy)
+     +) It's easy to learn. You'll get used to it after a short time.
+     +) The hierarchic project structure is always visible in the path.
+     +) It's easy to look up all your /_finance documents.
+     +) accessrights can be managed automatically
+
+4) There is are further levels of standardized directories at your disposal.
+   You can use them if they makes sense for you. Or you can ignore them.
+   Exemple:  /_finance
+             /_finance/_rentals
+             /_finance/_rentals/_offers
+             /_finance/_rentals/_bills/_open
+             /_finance/_rentals/_bills/_paid
+             /_finance/_purchases
+             /_finance/_purchases/_offers
+             /_finance/_purchases/_bills/_open
+             /_finance/_purchases/_bills/_paid
+             /_finance/_sales
+             /_finance/_sales/_offers
+             /_finance/_sales/_bills/_open
+             /_finance/_sales/_bills/_paid
+             /_finance/_taxes
+             :
+
+5) Now you could by default fill up each project directory with all 
+   these DMS-directories. This would just make a mess of directories 
+   as you do not need all of them in every project.
+   So the idea is to provide these DMS-directories on demand.
+   They are there if you need them, but they're not there by default.
+
+6) All these freeDMS-directories are not sacrified. They are ordinary 
+   directories at your disposal. You can simply use them and i.e.
+   create new directories inside.
+   Exemple:  /_finance/_purchases/urgent
+             /_communication/_website/pics
+   You can even make them a project themselfes
+   Exemple:  /_communication/_website/_finance/_purchases/_offers
+

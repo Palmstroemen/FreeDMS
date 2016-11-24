@@ -1,0 +1,51 @@
+This document explains the rights managememnt of freeDMS
+
+1) Each project has various roles.
+    r_admin      has access to all directories of a project.
+                 may create and delete all directories and files.
+                 may manage the access-rights of all directories and files.
+                 may define and assign additional roles for his project.
+                 may create subprojects and assign r_admins for these.
+                 They will be the r_master of all their sub projects.
+    r_team       have restricted rights for some directories by default.
+                 sometimes have writing righs for files created by themself but
+                 might have just reading rights for files created by others.
+                 may create directories in some directories.
+    r_private    A r_admin might assign enhanced or restricted rights to some
+                 team members. The'll inherit these rights also in sub projects.
+    r_master     is the r_admin of the super project.
+                 As a project typically is embedded as subproject into a superproject,
+                 there is always a admin of the super project.
+                 The r_admin must be team-member of this super project.
+    r_extern     someone from outside.
+                 has restricted reading and writing rights to some view directories.
+
+2) There are some super-roles that a r_admin may not assign.
+    r_superadmin may assign the super-roles. (typically a sys admin)
+                 may define the heritage system.
+                 the heritag system might be different in various sub projects.
+                 (think of different departments in a company)
+    r_supervisor There might be team members in a subproject 
+                 that are not team members of the super project.
+                 A supervisor may have access-rights to all (or restricted) 
+                 directories of all the r_admins and r_team of subprojects. 
+    r_superinfo, r_freeDMSdirectoryname  these roles have 
+    r_finance,   access to a dedicated level 1 directory and all its subdirectories.
+    r_law,       A mailclient might have acces to _communication
+    ...          A finance-software might have access to _finance
+                 and so on.
+
+2) Roles are automatically enherited to subprojects and created when a new project
+   is created. The task of the r_admin is to assign or deassign team members to
+   a subproject. 
+   By default, all team members of the master project will be assigned to a sub project.
+   If a person is removed from a team, this person is also removed from all subprojects.
+
+Exemples:
+   My private computer with some additional user-profiles (like my family members).
+   The computer admin typically is also the 
+       r_admin of the main projects directory and thus also the 
+       default r_admin of all sub projects. They are also the
+       r_superadmin of their private computer, but typically will not use this role.
+   The children might be kind of r_team while the 
+       

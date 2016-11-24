@@ -1,0 +1,28 @@
+#!/bin/bash
+# Returns a list of all MyOS-directories in the current project
+# Option -a: Returns a list of all possible MyOS-directories.
+
+set -eu
+
+# Read out the options and react to them
+while getopts a opt 2>/dev/null
+do
+   case $opt in
+       a) # Return a list of all possible freeDMS-directories.
+	  freeDMS_path=`__freeDMSpath`"/Template/"
+	  echo ""
+	  echo "____1st level freeDMS-directories_______________________________________"
+	  #ls -R ${freeDMS_path} _*/ 2>/dev/null
+	  (cd ${freeDMS_path} && ls -d _*/)
+	  echo ""
+	  echo "____2nd level freeDMS-directories_______________________________________"
+	  (cd ${freeDMS_path} && ls -d _*/_*/)
+	  echo ""
+	  exit 0;;
+       ?) echo "($0): Error! wrong options set."
+	  exit 1
+   esac
+done
+ls -R _* 2>/dev/null||echo "No freeDMS-directories yet"
+exit 0
+

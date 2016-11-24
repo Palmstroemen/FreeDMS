@@ -1,0 +1,49 @@
+#!/bin/bash
+# Adds an freeDMS-directory (and its superdirectory if necessary) to the current directory.
+# A valid freeDMS-directory is one that is present in the Template-directory of freeDMS
+# Other directories are not allowed and thus not added
+#echo "_____________________________________"
+
+set -eu
+# In case no directoryname is given return an usage statement.
+if [[ $# = 0 ]]; then
+	echo "Usage: $0 directoryname"
+	echo "Try: prdir -a  for a list of all possible freeDMS-directories."
+	exit 1
+fi
+
+
+# Get the path to the freeDMS-Template directory
+freeDMS_path=`__freeDMSpath`"/Template/"
+#echo "    freeDMS-path  = $freeDMS_path"
+
+
+# Check if the new directory is a valid freeDMS-directory.
+freeDMS_path_full=$(find ${freeDMS_path} -name $1)
+#echo "    Full Pfad  = $freeDMS_path_full"
+if $freeDMS_path_full 2>/dev/null
+    then  # in case it isn't, then write something.
+	echo "Error in $0"
+	echo "--- Sorry! $1 is no freeDMS-directory!"
+	echo "Try: prdir -a  for a list of all possible MyOS-directories."
+	echo "Try: prdir     for a list of all existing MyOS-directories in your project."
+	exit 1
+fi
+# Now the directory should be a valid freeDMS-directory.
+# But the directory might have been a subdirectory and now freeDMS_path_full contains the whole path tho the desired directory.
+
+# Remove the path to the template directory so just the relevant part remains.
+# /home/oliver/bin/freeDMS/Template/_communications/_up     becomes
+#                                _communications/_up
+new_path=${freeDMS_path_full/${freeDMS_path}/""}
+#echo "new path: $new_path"
+
+# create the new path in the current directory
+mkdir -p $new_path
+
+# in case the directory has not been an freeDMS-project directory yet. Make it now.
+freeDMS_path=`freeDMSpath`
+$freeDMS_path/prmk
+echo "$new_path"
+exit 0
+

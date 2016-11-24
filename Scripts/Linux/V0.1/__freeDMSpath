@@ -1,0 +1,4 @@
+#!/bin/bash
+# returns the path to freeDMS-directory which holds the scripts and the Template-directory.
+echo "/home/oliver/bin/freeDMS"
+# echo "/usr/local/bin/freeDMS
