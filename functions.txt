@@ -1,0 +1,124 @@
+Functions provided by freeDMS
+
+Just for r_admin
+================
+
+CREATE_PROJECT
+Creates a new Subproject from scratch.
+  * Ask for a <project-name>.
+  * Create a new directory with the <project-name>.
+  * Call MAKE_PROJECT <project-name>
+
+
+MAKE_PROJECT <project-name>
+Makes an existing directory a new project.
+  * Ask for a project-admin. (default self)
+  * Copy _freeDMS, _admin, _info and _communication to the directory.
+  * Copy the _communication/_sub and _communication/_super
+  * Call ASSIGN_TEAM (default: existing team)
+  * Create some communication links.
+		* a Link from each subproject\_admin\_communication_master 
+                 inside _admin\_communication_subprojects
+
+RENAME_PROJECT
+Allows to rename an existing project.
+  * Rename the project directory
+  * Correct the links affected by this
+
+ARCHIVE_PROJECT
+Allows to archive an existing project
+  * encurage r_admin to go thru all and collect valuable results.
+  * Remove Links
+  * ZIP-Directory to _archive
+
+ADD_TEAM_MEMBER
+Allows to add a team member
+  * Add to database inside _freeDMS
+  * Assign default roles. (default: from Master-project)
+  * (Create directory with name inside _info/_team)
+  * (Call the dialog MANAGE_ACCESS)
+
+REMOVE_TEAM_MEMBER
+Allows to remove a team member
+  * Mark member inside _freeDMS as ex.
+  * Move Userdirectory from _info/_team to _admin/_to_check
+
+ASSIGN_TEAM
+Allows to assign team members to the project.
+This is a dialog to enter properties of team members and to import lists.
+  * Ask for list of team members (default: copy from Master-project)
+  * Call ADD_TEAM_MEMBER for each member.
+  * (CALL the dialog MANAGE_ACCESS)
+
+MANAGE_ACCESS
+Allows to manage the access rights for team members.
+This is a subdialog of ASSIGN_TEAM
+  * assing roles to team members
+  * assign private roles to team members
+
+(REFRESH)
+Allows to redefine some Links automatically
+Maybe this is covered by GET_ALL
+
+
+
+For programs and r_admin:
+=========================
+
+Some programs like mailclient, messenger, finance-software, documentation-software 
+may have access to directories of a certain type.
+
+GET_ALL <_directoryname> [optional: <project_directory>]
+Get a list of all files (with path) inside <_directorytname>.
+  * Search for all files with the <_directoryname> within the <project_directory>
+  * Show them in a filebrowser
+
+GET_ALL_PROJECTS <project_directory>
+Get a list of all sub_projects of <project_directory>
+  * Search for all subdirectories in <project_directory> with a _freeDMS inside.
+  * Show them in a filebrowser
+
+SAVE_TO <project_path/_freeDMS_directory/filename>
+Saves the file to a _freeDMS_directory.
+  * if this does not exist yet, create it (with all superdirectories)
+
+
+
+These functions might be programmed in python or batch-scripts.
+They will have to be adopted for various OS.
+
+
+
+For everyone:
+=============
+
+SHOW_SUBDIRECTORIES
+Show possible freeDSM-subdirectories
+  * a link to this can be found in every freeDSM-directory
+    as long as the function is not implemented in filebrowsers.
+  * CREATE_SUBDIRECTORY can be called from there.
+
+CREATE_SUBDIRECTORY <_freeDMS_name>
+Create a freeDSM-subdirectory
+  * Make sure the _name is a valid _freeDMS-directory at this place.
+  * Copy (or create) the directory
+  * Copy the SHOW_SUBDIRECTORIES link into the new directory.
+
+SAVE_TO_SUBDIRECTORY <_freeDMS_name> <filename>
+Create a freeDSM-subdirectory and save the file into it.
+  * Call CREATE_SUBDIRECTORY
+  * If new directory exists - save file there
+  * If not, create a subdirectory with the name and save file there.
+
+
+
+
+
+
+Links:
+======
+There are a view systematic links that must be generated and maintained.
+These links provide a communikation pipeline from sub-projects to their super-projects
+and vice versa.
+Maybe all this is captured by the function GET_ALL _communication/_super
+
