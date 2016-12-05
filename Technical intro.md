@@ -14,9 +14,9 @@ Once these scripts exist, programs can start to use this structures.
 
 
 ## Terminology:
-  * Directories              are all ordinary directories in the system
-  * freeDMS-directories      are all directories that have been turned into freeDMS-projects.
-  * folders                  are all subdirectories that can be added by freeDMS. Such as _finance, _tech, ...
+  * **Directories**              are all ordinary directories in the system
+  * **freeDMS-directories**      are all directories that have been turned into freeDMS-projects.
+  * **folders**                  are all subdirectories that can be added by freeDMS. Such as _finance, _tech, ...
 
 
 ## A first pragmatic approach:
@@ -27,7 +27,8 @@ Once a directory has been turned into a freeDMS-project, there are some apps ins
   * ADD FOLDERS HERE           to add all Folders of the next level
   * (REMOVE EMPTY FOLDERS)     (toggles with ADD ALL FOLDERS HERE) to remove empty folders again.
 
-This allows to easily organize existing projects and to turn them into freeDMS-projects. The process is:
+This allows to easily organize existing projects and to turn them into freeDMS-projects.
+The process is:
   1. CREATE NEW SUBPROJECT     wether by adding a new subdirectory or by turning an existing directory into a freeDMS-project.
   2. Navigate to this directory and ADD ALL FOLDERS HERE
   3. Move your data into these new directories. Follow the strategy not to hide your data in the deepest sub-folders.
@@ -36,7 +37,8 @@ This allows to easily organize existing projects and to turn them into freeDMS-p
   4. Once you're done, REMOVE EMPTY FOLDERS again to just keep the folders you need.
      This cycle of ADDING and REMOVING you can repeat as often as you like. Existing files will never be overwritten.
      
-There is a folder _tools_ inside the folder _admin_ with further apps to manage the freeDMS-project. These apps allow for:
+There is also a folder **_tools** inside the folder **_admin** with further apps to manage the freeDMS-project. 
+These apps allow for:
   *  SHOW ALL FOLDERS           To add all freeDMS-Folders up to the deepest hierarchy.
   *  REMOVE EMPTY FOLDERS       Functionally identical to the Button outside. (technically not)
   *  MANAGE TEAM                Add team members to the project and manage their accessrights. (Not implemented yet)
@@ -45,9 +47,6 @@ There is a folder _tools_ inside the folder _admin_ with further apps to manage 
 
 
 ## Apps:
-no other programs do support freeDMS in the beginning, there is another approach to make the system easy to use.
-25
-Once a
 All these apps are simple .desktop-files. These are very small files that call a script.
 There are some fancy and tricky things about these app.desktop-files a developer should know.
 
