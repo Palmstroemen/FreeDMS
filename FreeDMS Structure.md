@@ -1,24 +1,22 @@
 # FreeDMS Structure
 a first proposal for a structure.
 
-AnyFolder
+Any freeDMS-project directory:
 
-    _FeeDMS				(hidden?) contains dadministrative data for FreeDMS, DB_history, FreeDMS Version, SVN, ...
+    .FreeDMS				(hidden?) contains dadministrative data for FreeDMS, DB_history, FreeDMS Version, SVN, ...
     	Context.file	a file that might contain the path for various users
     _admin              
         DB_stakeholder	Accessrights (roles, groups, also "world", "projectmembers", ...) maybe in _FreeDMS
         DB_contacts		Database of contacts - maybe in _FreeDMS
-    _inbox				everything that's not filed yet.
-    _info				general infos that are necessary for the project 
-    _communication      
-  	    _drafts
     	_up 			communication to superproject
-  	    _intern 		communication within the project on the same level
-  	    _extern 		communication with externals (Web, public affairs, ...)
   	    _down 		    general communication to all subprojects (for singular communications use folder _up in subproject)
   	    _to 			communication to other projects
+    _team               Everything concerning the team. Each team-member might have a folder inside.
+    _communication      
+  	    _intern 		communication within the project on the same level
+  	    _extern 		communication with externals (Web, public affairs, ...)
+    _info				general infos that are necessary for the project 
     _finance
-  	    _drafts			
   	    _offersIN		received offers
   	    _offersOUT		offers from the project to others
   	    _billsIN		purchases
@@ -44,7 +42,7 @@ AnyFolder
   	    _documents      documentation, reports, ...
   	    _web            things to be published
 
-Additionally every main folder contains an hidden folder _appdata. 
+Additionally every main folder may contain a hidden folder _appdata. 
 Applications may deposit their (for the user not readable) data like settings, binary files, ...
 
 It's all about a good overview *for the user*. 
