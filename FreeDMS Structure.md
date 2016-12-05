@@ -8,9 +8,9 @@ Any freeDMS-project directory:
     _admin              
         DB_stakeholder	Accessrights (roles, groups, also "world", "projectmembers", ...) maybe in _FreeDMS
         DB_contacts		Database of contacts - maybe in _FreeDMS
-    	_up 			communication to superproject
-  	    _down 		    general communication to all subprojects (for singular communications use folder _up in subproject)
-  	    _to 			communication to other projects
+    	_communication_up 		communication to superproject
+  	    _communication_down 	general communication to all subprojects (for singular communications use folder _up in subproject)
+  	    _communication_to 		communication to other projects
     _team               Everything concerning the team. Each team-member might have a folder inside.
     _communication      
   	    _intern 		communication within the project on the same level
