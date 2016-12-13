@@ -30,10 +30,13 @@ Principal ideas:
               /Home/Chalet
 
             Your computers and mobiles are a project
-              /computers
-              /computers/this computer
-              /computers/mobileXY
-              /computers/tabletYZ
+              /devices
+              /devices/this computer
+              /devices/router
+              /devices/laptop
+              /devices/tablet
+              /devices/mobile_A
+              /devices/tablet_B
 
             Your projects are projects
               /wedding
@@ -45,28 +48,29 @@ Principal ideas:
   You'll define master projects, subprojects, sub-subprojects and so on. 
  
 3) In most of these projects you will have recurring types of informations or parts of it. 
-   These types of information should be organized in all your projects and subprojects in the same way.
+   These types of information could be organized in all your projects and subprojects in the same way.
    Priciples are:
              /_admin          administrative issues like planning, organizing
-             /_infos          information collections, everything that 
-                              might be interesting for the project.
+             /_team           in some projects you might have a team.
              /_communication  various types of communication.
                               communication with your team members (memos)
                               communication to the world (website, advertisments)
                               communication with subprojects ...
-             /_finance        you almost always have some financial issues.
+             /_infos          information collections, everything that 
+                              might be interesting for the project.
              /_legal          contracts, EULAs, NDAs, patents, ... lawsuits
-             /_tech           technical issues like programs, datasheets, drawings, ...
+             /_finance        you almost always have some financial issues.
+             /_ressources     technical issues like programs, datasheets, drawings, ...
              /_work           something like: preparation, ToDo, Do, Check, Iterations,
-             /_docu           documentation of your work, pictures, timesheets, ...
+             /_docu           documentation of your work, pictures, ...
              /_arcive         a graveyard for finished subprojects.
              /_stuff          that you don't know where to put.
 
    freeDMS provides a standardized structure for exactly this.
    So we do not care how you name and organize your projects.
-   Whether you call it: /computers/mobileXY
-                    or: /Devices/myPhone
-   That's completely up to you, but freeDMS always provides you a directory like
+   Whether you call them: /computers/mobileXY
+                      or: /Devices/myPhone
+   That's completely up to you, but freeDMS always provides you a set of folders like
    _finance inside your projects if you need it. And it's always _finance and not 
    once called '/Bills' and somewhere else '/Financial issues'.
    So where to put the bill of your cellphone?
@@ -85,18 +89,14 @@ Principal ideas:
 4) There is are further levels of standardized directories at your disposal.
    You can use them if they makes sense for you. Or you can ignore them.
    Exemple:  /_finance
-             /_finance/_rentals
-             /_finance/_rentals/_offers
-             /_finance/_rentals/_bills/_open
-             /_finance/_rentals/_bills/_paid
+             /_finance/_insurances
              /_finance/_purchases
-             /_finance/_purchases/_offers
-             /_finance/_purchases/_bills/_open
-             /_finance/_purchases/_bills/_paid
+             /_finance/_offers
+             /_finance/_leasing_from
+             /_finance/_leasing_to
+             /_finance/_rentals_from
+             /_finance/_rentals_to
              /_finance/_sales
-             /_finance/_sales/_offers
-             /_finance/_sales/_bills/_open
-             /_finance/_sales/_bills/_paid
              /_finance/_taxes
              :
 
@@ -105,6 +105,9 @@ Principal ideas:
    as you do not need all of them in every project.
    So the idea is to provide these DMS-directories on demand.
    They are there if you need them, but they're not there by default.
+   You should not put your files in the deepest hierarchic level by default.
+   Just put your files into a folder of the next level, when they get too
+   crowded in the current level. 
 
 6) All these freeDMS-directories are not sacrified. They are ordinary 
    directories at your disposal. You can simply use them and i.e.
@@ -112,5 +115,9 @@ Principal ideas:
    Exemple:  /_finance/_purchases/urgent
              /_communication/_website/pics
    You can even make them a project themselfes
-   Exemple:  /_communication/_website/_finance/_purchases/_offers
+   Exemple:  /_communication/_website
+             now your Website might be a project on it's own:
+             /_communication/_website/_finance/_offers
+             
+That's it. That's freeDMS. 
 
