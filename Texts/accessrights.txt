@@ -1,4 +1,5 @@
 This document explains the rights managememnt of freeDMS
+(not implemented yet - just a scetch of the idea)
 
 1) Each project has various roles.
     r_admin      has access to all directories of a project.
