@@ -1,0 +1,3 @@
+#!/bin/bash
+# returns the path to MyOS-directory which holds the scripts and the Template-directory.
+echo "/home/oliver/bin/freeDMS"

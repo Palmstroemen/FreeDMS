@@ -1,0 +1,110 @@
+#!/bin/bash
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    ${SCRIPT_NAME} /path/to/directory
+#%
+#% DESCRIPTION
+#%    Removes all empty folders in the subtree.
+#%    This is meant to be called from an app only.
+#%    (To ease organizing existing data. __AddAllFolders first,
+#%     organize your files and __RemoveEmptyFolders next)
+#%
+#% OPTIONS
+#%    -p, --path      When called from any other folder
+#%    -a, --admin	  When called from a subfolder
+#%                    (like _admin or _tools)
+#%
+#% EXAMPLES
+#%    ${SCRIPT_NAME} -p /path/to/current/directory
+#%    ${SCRIPT_NAME} -a /path/to/current/_admin
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         ${SCRIPT_NAME} (www.freeDMS.com) 0.0.1
+#-    author          Oliver Rafelsberger
+#-    copyright       Copyright (c) http://www.freeDMS.com
+#-    license         GNU General Public License
+#-    script_id       freeDMS_DialogAddFolder
+#-
+#================================================================
+#  HISTORY
+#     2016/11/27 : orafelsberger : Script creation
+# 
+#================================================================
+#  DEBUG OPTION
+#
+#================================================================
+# END_OF_HEADER
+#================================================================
+# exec > ./logfile.txt
+
+
+# Definitions ...................................................
+freeDMSpath=`__freeDMSpath`										
+source ${freeDMSpath}/freeDMS.ini	# set freeDMS-Variables
+
+# Protect the template ##########################################
+# (don't call it inside the template) 							#
+currentDir=$(pwd)												#
+[[ ${currentDir}* == ${freeDMSpath}/Template* ]] && exit 2		#
+#################################################################
+
+
+# Capture some signals ..........................................
+trap 'kill -TERM ${$}; exit 99;' TERM
+trap 'exit 99;' INT QUIT TERM
+trap 'cleanup' EXIT
+cleanup() { dummy="If you need to remove something on breakup - do it here" ; }
+
+
+# Usage functions ...............................................
+usage() { printf "Usage: "; head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#+" | sed -e "s/^#+[ ]*//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g" ; }
+usagefull() { head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#[%+-]" | sed -e "s/^#[%+-]//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g" ; }
+scriptinfo() { head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#-" | sed -e "s/^#-//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g"; }
+
+
+
+
+
+#================================================================
+#  MAIN SCRIPT
+#================================================================
+
+# As there are just 2 simple options all this -options overhead
+# is simplyfied here.............................................
+currentPath=$(pwd)
+freeDMStemplate="${freeDMSpath}/Template"
+
+if [[ $# -eq 2 ]]; then
+	currentPath=${2%/*}
+	cd ${currentPath}
+	[[ $1 = "-a" ]] && currentPath=${currentPath%/*/*}
+fi
+[[ $# -eq 1 ]] && currentPath=$1
+[[ ! -d ${currentPath} ]] && error "\'${currentPath}\' is no valid directory!" && exit 1
+
+echo $currentPath
+cd $currentPath
+
+
+# attention this also deletes the folders and buttons in subprojects. We do not want this
+find . -name "${buttonSub}" -exec rm {} \; 
+find . -name "${buttonAdd}" -exec rm {} \;
+find . -name "${buttonFind}" -exec rm {} \;
+find . -name "Read.me" -exec rm {} \;
+find . -type d -empty -exec rmdir {} \;
+find . -type d -empty -exec rmdir {} \;
+find . -type d -empty -exec rmdir {} \;
+find . -type d -empty -exec rmdir {} \;
+find . -type d -empty -exec rmdir {} \;
+# Add the ADD Buttons again to the project-folders
+#cp -n "${freeDMSpath}/Template/.freeDMS/${buttonAdd}" ${currentPath}
+
+find . -name ${freeDMSkey} -execdir cp -n "${freeDMStemplate}/${buttonAdd}" . \;
+cp -n "${freeDMStemplate}/${buttonAdd}" "${currentPath}"
+
+rm "${buttonSub}" 2>/dev/null
+#read -p "Press any key to continue ..."
+

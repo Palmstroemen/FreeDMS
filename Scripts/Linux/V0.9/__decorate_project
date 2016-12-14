@@ -1,0 +1,110 @@
+#!/bin/bash
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    ${SCRIPT_NAME}  /path/to/current/project
+#%
+#% DESCRIPTION
+#%    Adds folder decorations to the freeDMS-folders.
+#%    (if the path holds a freeDMS-project (.freeDMS exists)
+#%
+#% OPTIONS
+#%    -p, --path	  Path to freeDMS-directory
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         ${SCRIPT_NAME} (www.freeDMS.com) 0.0.1
+#-    author          Oliver Rafelsberger
+#-    copyright       Copyright (c) http://www.freeDMS.com
+#-    license         GNU General Public License
+#-    script_id       freeDMS_DialogAddFolder
+#-
+#================================================================
+#  HISTORY
+#     2016/11/28 : orafelsberger : Script creation
+# 
+#================================================================
+# END_OF_HEADER
+#================================================================
+# exec > ~/Projekte/AAA/logfile.txt
+
+
+# Definitions ...................................................
+freeDMSpath=`__freeDMSpath`										
+source ${freeDMSpath}/freeDMS.ini	# set freeDMS-Variables
+
+# Protect the template ##########################################
+# (don't call it inside the template) 							#
+currentDir=$(pwd)												#
+[[ ${currentDir}* == ${freeDMSpath}/Template* ]] && exit 2		#
+#################################################################
+
+
+
+# Capture some signals ..........................................
+trap 'kill -TERM ${$}; exit 99;' TERM
+trap 'exit 99;' INT QUIT TERM
+trap 'cleanup' EXIT
+cleanup() { dummy="If you need to remove something on breakup - do it here" ; }
+
+
+
+
+#================================================================
+#  FUNCTIONS
+#================================================================
+
+
+# Usage functions ...............................................
+usage() { printf "Usage: "; head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#+" | sed -e "s/^#+[ ]*//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g" ; }
+usagefull() { head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#[%+-]" | sed -e "s/^#[%+-]//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g" ; }
+scriptinfo() { head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#-" | sed -e "s/^#-//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g"; }
+  
+
+
+
+#================================================================
+#  MAIN SCRIPT
+#================================================================
+
+# As there are just 2 simple options all this -options overhead
+# is simplyfied here.............................................
+
+[[ $# -eq 0 ]] && currentPath=$(pwd)
+[[ $# -eq 1 ]] && currentPath=$(pwd)/${1}
+[[ $# -gt 1 ]] && currentPath=${2}
+[[ ! -d ${currentPath} ]] && echo "SORRY: \'$currentPath\' is no directory!" && exit 1
+
+# check if the current path is a freeDMS-project having a .freeDMS-directory.
+if [[ -d ${currentPath}/.freeDMS ]]; then       # If so ...
+	tempFolder=${freeDMSpath}/Template 2>/dev/null	
+	folderName="Template"
+else											# If not ...
+	echo "Sorry \'$folderName\' is no freeDMS-folder" && exit 1
+fi
+# now 'tempFolder' is the Folder which of we like to add the new decorations.
+echo "Copy from: ${tempFolder}"
+echo "       to: ${currentPath}"
+echo "Icons    : ${freeDMSicons}"
+
+# Now lets decorate all the folders .............................
+gvfs-set-attribute $currentPath/_0_admin/_0_tools metadata::custom-icon "file://$freeDMSicons/applications-utilities.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_0_admin metadata::custom-icon "file://$freeDMSicons/folder-admin.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_0_team metadata::custom-icon "file://$freeDMSicons/folder-team.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_1_communications metadata::custom-icon "file://$freeDMSicons/folder-communications.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_1_communications/_extern_direct metadata::custom-icon "file://$freeDMSicons/folder-admin.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_1_communications/_extern_public metadata::custom-icon "file://$freeDMSicons/folder-world.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_1_communications/_drafts metadata::custom-icon "file://$freeDMSicons/folder-documents.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_2_infos metadata::custom-icon "file://$freeDMSicons/folder-info.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_3_legal metadata::custom-icon "file://$freeDMSicons/folder-legal.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_4_finance metadata::custom-icon "file://$freeDMSicons/folder-finance.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_5_ressources metadata::custom-icon "file://$freeDMSicons/folder-ressources.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_6_work metadata::custom-icon "file://$freeDMSicons/folder-work.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_7_docus metadata::custom-icon "file://$freeDMSicons/folder-documents.svg" 2>/dev/null
+gvfs-set-attribute $currentPath/_archive metadata::custom-icon "file://$freeDMSicons/folder-archive.svg" 2>/dev/null
+fs-set-attribute $currentPath/.freeDMS metadata::custom-icon "file://$freeDMSicons/emblem-important.svg" 2>/dev/null
+
+#gvfs-set-attribute -t unset  ${currentPath} metadata::custom-icon
+gvfs-set-attribute $currentPath metadata::custom-icon "file://$freeDMSicons/Projekt.svg" 2>/dev/null
+

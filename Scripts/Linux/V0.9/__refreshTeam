@@ -1,0 +1,322 @@
+#!/bin/bash
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    ${SCRIPT_NAME} -pa /path/to/current/directory
+#%
+#% DESCRIPTION
+#%    Refreshes the _team-folder by reading the TEAM-file
+#%    and adding a private folder for each team-member.  
+#%    The TEAM-file can be found.
+#%    This function is called by an app only.
+#%
+#% OPTIONS
+#%    -p, --path      defines the path to current directory
+#%    -a, --admin	  like -p but goes two directories down
+#%    -h, --help	  Print this help
+#%    -v, --version	  Print script information
+#%
+#% EXAMPLES
+#%    ${SCRIPT_NAME} -p /path/to/current/directory
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         ${SCRIPT_NAME} (www.freeDMS.com) 0.0.1
+#-    author          Oliver Rafelsberger
+#-    copyright       Copyright (c) http://www.freeDMS.com
+#-    license         GNU General Public License
+#-    script_id       freeDMS_DialogAddFolder
+#-
+#================================================================
+#  HISTORY
+#     2016/12/05 : orafelsberger : Script creation
+# 
+#================================================================
+# END_OF_HEADER
+#================================================================
+# exec > ./logfile.txt
+
+# Definitions ...................................................
+freeDMSpath=`__freeDMSpath`										
+source ${freeDMSpath}/freeDMS.ini	# set freeDMS-Variables
+
+
+# Protect the template ##########################################
+# (don't call it inside the template) 							#
+currentDir=$(pwd)												#
+[[ ${currentDir}* == ${freeDMSpath}/Template* ]] && exit 2		#
+#################################################################
+
+# Capture some signals ..........................................
+trap 'kill -TERM ${$}; exit 99;' TERM
+trap 'exit 99;' INT QUIT TERM
+trap 'cleanup' EXIT
+cleanup() { dummy="If you need to remove something on breakup - do it here" ; }
+
+source easybashgui
+
+#================================================================
+#  FILES AND VARIABLES
+#================================================================
+
+# General variables..............................................
+SCRIPT_HEADSIZE=$(head -200 ${0} |grep -n "^# END_OF_HEADER" | cut -f1 -d:)
+SCRIPT_NAME="$(basename ${0})" # scriptname without path
+SCRIPT_DIR="$( cd $(dirname "$0") && pwd )" # script directory
+
+
+
+
+#================================================================
+#  FUNCTIONS
+#================================================================
+
+# Usage functions ...............................................
+usage() { printf "Usage: "; head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#+" | sed -e "s/^#+[ ]*//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g" ; }
+usagefull() { head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#[%+-]" | sed -e "s/^#[%+-]//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g" ; }
+scriptinfo() { head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#-" | sed -e "s/^#-//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g"; }
+  
+
+generalSettings() 
+{
+	# check the global settings
+	parameter=${1%:*}
+	status=${1#*:}
+	shopt -s extglob	# I just want to cut off the leading and trailing spaces
+	parameter="${parameter%%*( )}"
+	parameter="${parameter##*( )}"
+	status="${status%%*( )}"
+	status="${status##*( )}"
+	shopt -u extglob	# this schould be easier, but I don't know how.
+
+	case $status in 
+		No|no|N|n|"")
+			case $parameter in
+				"ProjectTeam") projectTeam=false 
+				;;
+				"TeamFolders") haveTeamFolders=false
+				;;
+				"FullAccess") accessControl=true 
+				;;
+				"TeamCreateSubprojects") teamCreateSubprojects=false 
+				;;
+			esac
+		;;
+	esac
+
+    echo Settings: C: $parameter S: $status
+}
+
+defineMembers() { memberLine+=("$1"); echo Member: "$line"; } 
+permissions4roles() { roleLine+=("$1"); echo Role  : "$line"; }
+Name() { name=$(echo ${1%%:*}); }
+
+FolderName()
+{
+	fname=${1#*:}
+#	fname=${fname#*:}
+	fname=${fname%%:*}	
+	fname=$(echo ${fname%%:*})
+	if [[ $fname = "" ]]; then	
+		Name "$1"
+		folderName="_${name// /_}"
+	else
+		folderName=$fname
+	fi
+}
+
+#================================================================
+#  PARSE OPTIONS WITH GETOPTS
+#================================================================
+
+# Set short options .............................................
+SCRIPT_OPTS='a:hv-:'
+
+# Set long options associated with short one ....................
+typeset -A ARRAY_OPTS
+ARRAY_OPTS=(
+	[admin]=a
+	[help]=h
+	[man]=h
+)
+
+# Parse options =================================================
+while getopts ${SCRIPT_OPTS} OPTION ; do
+	# Translate long options to short ...........................
+	if [[ "x$OPTION" == "x-" ]]; then
+		LONG_OPTION=$OPTARG
+		LONG_OPTARG=$(echo $LONG_OPTION | grep "=" | cut -d'=' -f2)
+		LONG_OPTIND=-1
+		[[ "x$LONG_OPTARG" = "x" ]] && LONG_OPTIND=$OPTIND || LONG_OPTION=$(echo $OPTARG | cut -d'=' -f1)
+		[[ $LONG_OPTIND -ne -1 ]] && eval LONG_OPTARG="\$$LONG_OPTIND"
+		OPTION=${ARRAY_OPTS[$LONG_OPTION]}
+		[[ "x$OPTION" = "x" ]] &&  OPTION="?" OPTARG="-$LONG_OPTION"
+		
+		if [[ $( echo "${SCRIPT_OPTS}" | grep -c "${OPTION}:" ) -eq 1 ]]; then
+			if [[ "x${LONG_OPTARG}" = "x" ]] || [[ "${LONG_OPTARG}" = -* ]]; then 
+				OPTION=":" OPTARG="-$LONG_OPTION"
+			else
+				OPTARG="$LONG_OPTARG";
+				if [[ $LONG_OPTIND -ne -1 ]]; then
+					[[ $OPTIND -le $Optnum ]] && OPTIND=$(( $OPTIND+1 ))
+					shift $OPTIND
+					OPTIND=1
+				fi
+			fi
+		fi
+	fi
+
+	# Options follow by another option instead of argument ......
+	if [[ "x${OPTION}" != "x:" ]] && [[ "x${OPTION}" != "x?" ]] && [[ "${OPTARG}" = -* ]]; then 
+		OPTARG="$OPTION" OPTION=":"
+	fi
+  
+	# Manage options ............................................
+	case "$OPTION" in
+
+		a ) currentPath="${OPTARG%/*/*/*}"
+		;;
+
+		h ) usagefull
+            exit 0
+        ;;
+        
+		v ) scriptinfo
+            exit 0
+        ;;
+        
+		: ) echo "${SCRIPT_NAME}: -$OPTARG: option requires an argument"
+            exit 1
+        ;;
+        
+		? ) echo "${SCRIPT_NAME}: -$OPTARG: unknown option"
+            exit 1
+        ;;
+	esac
+done
+shift $((${OPTIND} - 1)) ## shift options
+
+
+
+
+
+#================================================================
+#  MAIN SCRIPT
+#================================================================
+
+teamFile="${currentPath}/${freeDMSteam}"
+[[ ! -e ${teamFile} ]] && echo "Sorry:there is no TEAM-file!" && exit 1
+[[ ! -d ${currentPath}/$freeDMSkey ]] && echo "Sorry: \'$folderName\' is no freeDMS-folder" && exit 1
+
+# Show the team-config-file .....................................
+supertitle="Manage your Team by "
+cat $teamFile | text -h 800 -w 800			# show dialog
+choice="$(0< "${dir_tmp}/${file_tmp}" )"	# read the return
+[[ -n $choice ]] && cp "${dir_tmp}/${file_tmp}" "${teamFile}" 
+ 
+
+freeDMStemplate="${freeDMSpath}/Template"
+
+
+
+
+# parse the TEAM file ...........................................
+
+echo
+echo __evaluating TEAM-file___________________
+projectTeam=true
+haveTeamFolders=true
+accessControl=false
+teamCreateSubprojects=true
+
+while read line; do 
+    line="$line" | sed 's/^ //'
+    if [[ $line =~ ^"["(.+)"]"$ ]]; then 
+        sectionName=${BASH_REMATCH[1]}
+    elif [[ ${line:0:1} = "#" ]] || [[ ${line:0:1} = "" ]]; then 
+        dummy=0
+	else
+		[[ "${sectionName%%:*}" = "General" ]] && generalSettings "${line}" 
+		[[ "${sectionName%%:*}" = "Team " ]] && defineMembers "${line}"
+		[[ "${sectionName%%:*}" = "Roles" ]] && permissions4roles "${line}"
+    fi
+done < "$teamFile"
+echo
+
+# We have now read out all the data from the file.
+# They have set global variables and arrays.
+echo __File___________________________________
+echo "There is a team for this project   : $projectTeam"
+echo "Team-Members have their own folders: $haveTeamFolders"
+echo "Team-Members have limited access   : $accessControl"
+echo "Team-members may create subprojects: $teamCreateSubprojects"
+if [[ $teamCreateSubprojects ]]; then
+	cp "$freeDMStemplate/$freeDMSkey/$buttonCreate" "$currentPath/$freeDMSkey/"
+else
+	rm "$currentPath/$freeDMSkey/$buttonCreate"
+fi
+echo
+
+# in case the team-folder doesn't exist yet .....................
+[[ ! -d "$currentPath/$teamFolder" ]] && mkdir ${currentPath}/$teamFolder
+cd "$currentPath/$teamFolder"
+gvfs-set-attribute $currentPath/$teamFolder metadata::custom-icon "file://$freeDMSicons/folder-team.svg" 2>/dev/null
+
+
+# Get _foldernames for the team-members in the file .............
+# For each team-member a folder _name will be created.
+if [[ $projectTeam = true ]] && [[ $haveTeamFolders = true ]]; then
+	echo __Team-members and their folders_________
+	for member in "${memberLine[@]}"; do
+		Name "$member"					# returns $name
+		FolderName "$member"			# returns $folderName
+		memberFolders+=($folderName)	# we save it into an array.
+		echo "$name --> $folderName"
+		if [[ -e "${folderName}.tar.gz" ]]; then
+			tar xvzf "${folderName}.tar.gz" # untar existing tar-files
+			rm "${folderName}.tar.gz"
+		else
+			mkdir -p $folderName
+			cp -a -n $freeDMSpersonTemplate/$freeDMSmyAdmin $folderName/
+			cp -n "$freeDMSpersonTemplate/$buttonMemberAdd" $folderName/
+		fi
+	done
+fi
+
+
+# Check for existing team-folders inside this project ...........
+# if a team-member has been removed it's corresponding
+# team folder _name will be tar-compressed.
+echo
+echo __Folders________________________________
+existingFolders+=($`find $currentPath/$teamFolder/ -mindepth 1 -maxdepth 1 -name "_*" -type d`)
+#echo ${existingFolders[*]}
+
+foundany=false
+for folder in ${existingFolders[*]}
+do
+	found=false
+	for memberF in ${memberFolders[*]}
+	do
+		if [[ ${folder##*/} = ${memberF} ]]; then
+			found=true
+		fi
+	done
+	if [[ $found = false ]]; then
+		echo "Folder '${folder##*/}' not in config-file." 
+		tar czf ${folder##*/}.tar.gz ${folder##*/} --remove-files
+		foundany=true
+	fi
+done
+if [[ $foundany = true ]]; then
+	echo "Folders of these team-members have been compressed."
+else
+	echo "Folders of team-members have been updated."
+fi
+echo
+
+
+
+# read -p "Press [Enter] key to contiue ..."
+

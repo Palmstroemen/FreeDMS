@@ -1,0 +1,190 @@
+#!/bin/bash
+#================================================================
+# HEADER
+#================================================================
+#% SYNOPSIS
+#+    ${SCRIPT_NAME} -pda /path/to/current/directory  or only directory
+#%
+#% DESCRIPTION
+#%    Add a folder to the _check_this folder in _admin.
+#%
+#% OPTIONS
+#%       -a, --admin	  Path to current directory/file.desktop
+#%       -h, --help		  Print this help
+#%       -v, --version	  Print script information
+#%
+#% EXAMPLES
+#% usage: __add_to_check -a %k  this is the call for the .desktop-app
+#%
+#================================================================
+#- IMPLEMENTATION
+#-    version         ${SCRIPT_NAME} 0.0.1
+#-    author          Oliver Rafelsberger
+#-    copyright       Copyright (c) Oliver Rafelsberger
+#-    license         GNU General Public License
+#-    script_id       freeDMS_add_to_check
+#-
+#================================================================
+#  HISTORY
+#     2016/12/11 : orafelsberger : Script creation
+# 
+#================================================================
+# END_OF_HEADER
+#================================================================
+# exec > ./logfile.txt
+
+
+# Definitions ...................................................
+freeDMSpath=`__freeDMSpath`										
+source ${freeDMSpath}/freeDMS.ini	# set freeDMS-Variables
+
+
+# Protect the template ##########################################
+# (don't call it inside the template) 							#
+currentDir=$(pwd)												#
+[[ ${currentDir}* == ${freeDMSpath}/Template* ]] && exit 2		#
+#################################################################
+
+# Capture some signals ..........................................
+trap 'kill -TERM ${$}; exit 99;' TERM
+trap 'exit 99;' INT QUIT TERM
+trap 'cleanup' EXIT
+cleanup() { dummy="If you need to remove something on breakup - do it here" ; }
+
+source easybashgui
+
+
+
+#================================================================
+#  FILES AND VARIABLES
+#================================================================
+
+# General variables..............................................
+SCRIPT_HEADSIZE=$(head -200 ${0} |grep -n "^# END_OF_HEADER" | cut -f1 -d:)
+SCRIPT_NAME="$(basename ${0})" # scriptname without path
+SCRIPT_DIR="$( cd $(dirname "$0") && pwd )" # script directory
+
+
+
+#================================================================
+#  FUNCTIONS
+#================================================================
+
+# Usage functions ...............................................
+usage() { printf "Usage: "; head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#+" | sed -e "s/^#+[ ]*//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g" ; }
+usagefull() { head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#[%+-]" | sed -e "s/^#[%+-]//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g" ; }
+scriptinfo() { head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^#-" | sed -e "s/^#-//g" -e "s/\${SCRIPT_NAME}/${SCRIPT_NAME}/g"; }
+  
+
+
+
+#================================================================
+#  PARSE OPTIONS WITH GETOPTS
+#================================================================
+
+# Set the short options .........................................
+SCRIPT_OPTS='a:hv-:'
+
+
+# Set the long options associated with short options ............
+typeset -A ARRAY_OPTS
+ARRAY_OPTS=(
+	[admin]=a
+	[help]=h
+	[man]=h
+	[version]=h
+)
+
+
+# Parse options =================================================
+while getopts ${SCRIPT_OPTS} OPTION ; do
+	# Translate long options to short ...........................
+	if [[ "x$OPTION" == "x-" ]]; then
+		LONG_OPTION=$OPTARG
+		LONG_OPTARG=$(echo $LONG_OPTION | grep "=" | cut -d'=' -f2)
+		LONG_OPTIND=-1
+		[[ "x$LONG_OPTARG" = "x" ]] && LONG_OPTIND=$OPTIND || LONG_OPTION=$(echo $OPTARG | cut -d'=' -f1)
+		[[ $LONG_OPTIND -ne -1 ]] && eval LONG_OPTARG="\$$LONG_OPTIND"
+		OPTION=${ARRAY_OPTS[$LONG_OPTION]}
+		[[ "x$OPTION" = "x" ]] &&  OPTION="?" OPTARG="-$LONG_OPTION"
+		
+		if [[ $( echo "${SCRIPT_OPTS}" | grep -c "${OPTION}:" ) -eq 1 ]]; then
+			if [[ "x${LONG_OPTARG}" = "x" ]] || [[ "${LONG_OPTARG}" = -* ]]; then 
+				OPTION=":" OPTARG="-$LONG_OPTION"
+			else
+				OPTARG="$LONG_OPTARG";
+				if [[ $LONG_OPTIND -ne -1 ]]; then
+					[[ $OPTIND -le $Optnum ]] && OPTIND=$(( $OPTIND+1 ))
+					shift $OPTIND
+					OPTIND=1
+				fi
+			fi
+		fi
+	fi
+
+	# Options follow by another option instead of argument ======
+	if [[ "x${OPTION}" != "x:" ]] && [[ "x${OPTION}" != "x?" ]] && [[ "${OPTARG}" = -* ]]; then 
+		OPTARG="$OPTION" OPTION=":"
+	fi
+  
+	# Manage options ............................................
+	case "$OPTION" in
+
+		a ) parent_dir="${OPTARG%/*/*/*}" # cuttoff the last 3 entries
+			target_folder="${OPTARG%/*}"
+			# /_admin/_check_this/APP.desktop
+		;;
+
+		h ) usagefull
+            exit 0
+        ;;
+        
+		v ) scriptinfo
+            exit 0
+        ;;
+        
+		: ) echo "${SCRIPT_NAME}: -$OPTARG: option requires an argument"
+            exit 1
+        ;;
+        
+		? ) echo "${SCRIPT_NAME}: -$OPTARG: unknown option"
+            exit 1      
+        ;;
+	esac
+done
+shift $((${OPTIND} - 1)) # shift options
+
+
+
+
+
+#================================================================
+#  MAIN SCRIPT
+#================================================================
+
+
+# if the new_project is "--dialog" ..............................
+cd ${parent_dir}
+supertitle="Select a folder to add to _check_this folder."
+dselect --width 600 --heigth 400 "${parent_dir}/"
+folder="$(0< "${dir_tmp}/${file_tmp}" )"	# read the return
+[[ ${#folder} -eq 0 ]] && exit 0 
+
+
+
+echo "Add folder: _______________"
+echo p: "$parent_dir"
+echo F: "$folder"
+echo to
+echo T: "$target_folder"
+
+relFolder=${folder##$parent_dir}
+relTarget=${target_folder##$parent_dir}
+echo ============================
+echo F: $relFolder
+echo T: $relTarget
+# Now create the sym-link ........................................
+ln -s "../..$relFolder" ".${relTarget}/${relFolder##*/}" 
+
+#read -p "Press any key ..."
+
