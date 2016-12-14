@@ -1,68 +1,55 @@
 Functions provided by freeDMS
 
-Just for r_admin
+Just for _admin (inside _tools)
 ================
 
-CREATE_PROJECT
-Creates a new Subproject from scratch.
-  * Ask for a <project-name>.
-  * Create a new directory with the <project-name>.
-  * Call MAKE_PROJECT <project-name>
-
-
 MAKE_PROJECT <project-name>
-Makes an existing directory a new project.
-  * Ask for a project-admin. (default self)
-  * Copy _freeDMS, _admin, _info and _communication to the directory.
-  * Copy the _communication/_sub and _communication/_super
-  * Call ASSIGN_TEAM (default: existing team)
-  * Create some communication links.
-		* a Link from each subproject\_admin\_communication_master 
-                 inside _admin\_communication_subprojects
+Creates a new project or makes an existing directory a new project.
+  * Depending on the options ask for a project-name or a directory.
+  * Create the directory or cd to the selected directory.
+  * Copy .freeDMS and _admin to the directory.
+  * Call MANAGE_TEAM (default: existing team)
+  * Copy the ADD_FOLDERS_HERE button.
 
-RENAME_PROJECT
-Allows to rename an existing project.
-  * Rename the project directory
-  * Correct the links affected by this
+ADD_ALL_FOLDERS
+Adds all freeDMS-folders up to the deepest hierarchy to the project. (Not to subprojects)
+
+REMOVE_EMPTY_FOLDERS
+Removes all empty folders even non freeDMS-folders and also in subprojects.
 
 ARCHIVE_PROJECT
 Allows to archive an existing project
-  * encurage r_admin to go thru all and collect valuable results.
+  * copy all data inside _keep_this-folders into to _admin/_check_this-folder of the master project.
   * Remove Links
   * ZIP-Directory to _archive
 
-ADD_TEAM_MEMBER
-Allows to add a team member
-  * Add to database inside _freeDMS
-  * Assign default roles. (default: from Master-project)
-  * (Create directory with name inside _info/_team)
-  * (Call the dialog MANAGE_ACCESS)
+MANAGE_TEAM
+Allows to edit the hidden TEAM-file inside .freeDMS and the parses the file and evaluates it.
+  * Open the TEAM-file inside _freeDMS for edit.
+  * Parse and evaluate the TEAM-file after OK.
+  * (Depending on configurations in the first section of the TEAM-file create _name-folders inside _team)
+  * (If team-members have been removed their corresponding _name-folders are compressed)
+  * User may then remove this files as they like.
+  * There is no automatic update to subprojects yet. Adding or removing members will not affect subprojects.
+  * Roles can be defined, but are not used yet.
 
-REMOVE_TEAM_MEMBER
-Allows to remove a team member
-  * Mark member inside _freeDMS as ex.
-  * Move Userdirectory from _info/_team to _admin/_to_check
+FIND
+Allows an advanced search for files that are or could be in a certain freeDMS-folder.
+  * Provides a dialog to select a freeDMS-folder. (Folder-type)
+  * Searches for all files in folders with this name, as well as in all sub-folders.
+  	i.e. if you search for _finance also files in _finance/_sales will be found.
+  * Searches for all files in superfolders if the forder-type does not exist yet - also in sub-projects.
+  	i.e. if you search for _sales also files in _finance or a subproject will be found if _sales is not present there.
+  * Creates a new folder with the name _found_in_folder-type (i.e. _found_in_finance)
+  * Adds relative links to all found files to this folder.
 
-ASSIGN_TEAM
-Allows to assign team members to the project.
-This is a dialog to enter properties of team members and to import lists.
-  * Ask for list of team members (default: copy from Master-project)
-  * Call ADD_TEAM_MEMBER for each member.
-  * (CALL the dialog MANAGE_ACCESS)
-
-MANAGE_ACCESS
-Allows to manage the access rights for team members.
-This is a subdialog of ASSIGN_TEAM
-  * assing roles to team members
-  * assign private roles to team members
-
-(REFRESH)
-Allows to redefine some Links automatically
-Maybe this is covered by GET_ALL
+ADD_FILE_LINK_HERE, ADD_FOLDER_LINK_HERE
+Allows to search for files and folders and adds a relative link to the current directory.
+The advantage of relative links is, that they remain valid in case of renaming the project file.
+The idea is, that an admin collects some files inside the _check_this-folder that they want to check on a regular basis.
 
 
-
-For programs and r_admin:
+For programs and _admin: (Not available yet)
 =========================
 
 Some programs like mailclient, messenger, finance-software, documentation-software 
@@ -92,23 +79,30 @@ They will have to be adopted for various OS.
 For everyone:
 =============
 
-SHOW_SUBDIRECTORIES
-Show possible freeDSM-subdirectories
-  * a link to this can be found in every freeDSM-directory
-    as long as the function is not implemented in filebrowsers.
-  * CREATE_SUBDIRECTORY can be called from there.
+ADD_FOLDERS_HERE
+Show possible freeDSM-subdirectories of the next level
+  * a link to this can be found in every freeDSM-folder
+    (as long as the function is not implemented in filebrowsers.)
+  * copies the appropriate folders to the current folder
+  * Adds a ADD_FOLDERS_HERE_APP and a FIND-APP inside.
+  * Adds a _keep_this folder inside and decorates it.
+  * Replaces the ADD_FOLDERS_HERE-App in the current directory by a REMOVE_EMPTY_FOLDERS-App.
 
-CREATE_SUBDIRECTORY <_freeDMS_name>
-Create a freeDSM-subdirectory
-  * Make sure the _name is a valid _freeDMS-directory at this place.
-  * Copy (or create) the directory
-  * Copy the SHOW_SUBDIRECTORIES link into the new directory.
+REMOVE_EMPTY_FOLDERS
+Removes all empty folders inside the current folder up to all subfolders.
 
-SAVE_TO_SUBDIRECTORY <_freeDMS_name> <filename>
-Create a freeDSM-subdirectory and save the file into it.
-  * Call CREATE_SUBDIRECTORY
-  * If new directory exists - save file there
-  * If not, create a subdirectory with the name and save file there.
+FIND
+Allows an advanced search for files that are or could be in a certain freeDMS-folder.
+  * Provides no dialog to select a folder (Folder-type). Instead takes the folder where it is located.
+  	i.e. if the FIND-App is located inside _finance it will search for files in _finance and all subprojects.
+	in Fact this function steps one folder down and searches there for the folder-type. 
+	So from the fist folder-level it will also search in subprojects. From the second in will not.
+  * Searches for all files in folders with this name, as well as in all sub-folders.
+  	i.e. if you search for _finance also files in _finance/_sales will be found.
+  * Searches for all files in superfolders if the forder-type does not exist yet - also in sub-projects.
+  	i.e. if you search for _sales also files in _finance or a subproject will be found if _sales is not present there.
+  * Creates a new folder with the name _found_in_folder-type (i.e. _found_in_finance)
+  * Adds relative links to all found files to this folder.
 
 
 
