@@ -33,7 +33,7 @@ Allows to edit the hidden TEAM-file inside .freeDMS and the parses the file and 
   * There is no automatic update to subprojects yet. Adding or removing members will not affect subprojects.
   * Roles can be defined, but are not used yet.
 
-FIND
+FIND_FILES
 Allows an advanced search for files that are or could be in a certain freeDMS-folder.
   * Provides a dialog to select a freeDMS-folder. (Folder-type)
   * Searches for all files in folders with this name, as well as in all sub-folders.
@@ -91,7 +91,7 @@ Show possible freeDSM-subdirectories of the next level
 REMOVE_EMPTY_FOLDERS
 Removes all empty folders inside the current folder up to all subfolders.
 
-FIND
+FIND_FILES
 Allows an advanced search for files that are or could be in a certain freeDMS-folder.
   * Provides no dialog to select a folder (Folder-type). Instead takes the folder where it is located.
   	i.e. if the FIND-App is located inside _finance it will search for files in _finance and all subprojects.
