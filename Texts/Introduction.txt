@@ -64,7 +64,7 @@ Principal ideas:
              /_work           something like: preparation, ToDo, Do, Check, Iterations,
              /_docu           documentation of your work, pictures, ...
              /_arcive         a graveyard for finished subprojects.
-             /_stuff          that you don't know where to put.
+             /_stuff          for things that you don't know where else to put.
 
    freeDMS provides a standardized structure for exactly this.
    So we do not care how you name and organize your projects.
@@ -86,9 +86,9 @@ Principal ideas:
      +) It's easy to look up all your /_finance documents.
      +) accessrights can be managed automatically
 
-4) There is are further levels of standardized directories at your disposal.
-   You can use them if they makes sense for you. Or you can ignore them.
-   Exemple:  /_finance
+4) There are further levels of standardized directories at your disposal.
+   You can use them if they makes sense to you. Or you can ignore them.
+   Example:  /_finance
              /_finance/_insurances
              /_finance/_purchases
              /_finance/_offers
@@ -106,16 +106,16 @@ Principal ideas:
    So the idea is to provide these DMS-directories on demand.
    They are there if you need them, but they're not there by default.
    You should not put your files in the deepest hierarchic level by default.
-   Just put your files into a folder of the next level, when they get too
-   crowded in the current level. 
+   Just put your files into a folder of the next level. 
+   If it's getting too crowded in an existing folder, add the next hierarchy level. 
 
 6) All these freeDMS-directories are not sacrified. They are ordinary 
    directories at your disposal. You can simply use them and i.e.
    create new directories inside.
-   Exemple:  /_finance/_purchases/urgent
+   Example:  /_finance/_purchases/urgent
              /_communication/_website/pics
    You can even make them a project themselfes
-   Exemple:  /_communication/_website
+   Example:  /_communication/_website
              now your Website might be a project on it's own:
              /_communication/_website/_finance/_offers
              
