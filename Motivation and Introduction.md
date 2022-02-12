@@ -45,7 +45,7 @@ The trick is to always add the same folders and to establish a universal structu
 ## Advantages
   * I always know exactly where to place my documents, my tickets, my bills, my informations and documentation and I'll finde them again in 20 years.
   * Any software like my mailclient i.e. can read my project structure as it is represented by the path to my project:
-    **home/Projects/Family/Holidays/2015_USA_Trip/_communication**
+    **home/Projects/Family/Holidays/2022_USA_Trip/_communication**
   * Easy handling of permissions: My financial software might have just access to all the _finance folders and subfolders.
   * When sharing projects or parts of projects with others everyone immediately recognizes the same structures and they'll find their  way.
 
@@ -63,6 +63,12 @@ When downloading my documents, my email-client asks me where to save the files. 
 The point is, that the folders are always called like "_finance" and not once "bills", next time "finances", "tickets", ...
 Also when folders are created, permissions might be given to these folders according to a custom scheme. Like my financial software might belong to a group "_finance_rw". This group has access to all my "_finance" folders and each newly created folder "_finance" gives rights for reading and writing to the group "_finances_rw". So it will be automatically accessible for my financial software.
 
-## not too much
-It's important that the number of standard folders in one level stays small and not everyone adds some folders to the structure as they think it might be fancy. So there should not be additional folders like _IBM_finances, _GOOGLE_finances, ... because IBM thinks it would be better to structureize the _finances into _in, _out, _offers and _bills and GOOGLE thinks it should be structured into _buy, _sell, _rent, _interests, ...
-So there is a primary structure of standard project folders that can be discussed but should be fixed once and then stay for quite a time. This basic structure can be found in the file: [FreeDMS_structure.md](FreeDMS Structure.md)
+## Free to configure or standardized?
+An open question is if the users should be able to configure the scheme according to their needs. This would be nice but it would destroy any attempts of standardization.
+In case one goes for standardization, it would be important that the number of standard folders in one level stays small and not everyone adds some folders to the structure as they think it might be fancy. So there should not be additional folders like _IBM_finances, _GOOGLE_finances, ... because IBM thinks it would be better to structureize the _finances into _in, _out, _offers and _bills and GOOGLE thinks it should be structured into _buy, _sell, _rent, _interests, ...
+So there should be a primary structure of standard project folders that can be discussed but should be fixed once and then stay for quite a time. A first proposal for such a basic structure can be found in the file: [FreeDMS_structure.md](FreeDMS Structure.md)
+
+## principal design rules
+The first design rule for such a structure should always be: New users should find their way with as vew as possible explanations.
+A folder _finance is selfexplanatory while a folder _exchange is not. Exchanging files is the principal idea of this concept. 
+Hirarchical structures are always suffering from some inconsistencies. Like do _insurances belong to _finances or to _legal ? For this each folder might contain a read.me file that explains which things belong in this folder and which do not. For these things the right folder should be mentioned in the read.me-file.
