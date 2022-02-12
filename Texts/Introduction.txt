@@ -6,7 +6,7 @@ Principal ideas:
 1) You want to organize almost all your files in projects and subprojects.
 
 2) Each project is represented by a directory and may be organized in subprojects (subdirectories)
-   Exemple: Your family is a project. The members of the family are subprojects.
+   Example: Your family is a project. The members of the family are subprojects.
               /family
               /family/mother
               /family/mother/job
@@ -39,15 +39,15 @@ Principal ideas:
               /devices/tablet_B
 
             Your projects are projects
-              /wedding
-              /wedding/preparations
-              /wedding/church
-              /wedding/invitations
+              /projects
+              /projects/myHelicopterproject
+              /projects/WeddingOfFrancesca
+              /projects/
 
   So in general you organize all your data in projects in a hierarchical order of your choice. 
   You'll define master projects, subprojects, sub-subprojects and so on. 
  
-3) In most of these projects you will have recurring types of informations or parts of it. 
+3) In most of these projects you will have recurring types of information or at least parts of it. 
    These types of information could be organized in all your projects and subprojects in the same way.
    Priciples are:
              /_admin          administrative issues like planning, organizing
@@ -57,12 +57,12 @@ Principal ideas:
                               communication to the world (website, advertisments)
                               communication with subprojects ...
              /_infos          information collections, everything that 
-                              might be interesting for the project.
+                              might be of interest for the project.
              /_legal          contracts, EULAs, NDAs, patents, ... lawsuits
-             /_finance        you almost always have some financial issues.
-             /_ressources     technical issues like programs, datasheets, drawings, ...
-             /_work           something like: preparation, ToDo, Do, Check, Iterations,
-             /_docu           documentation of your work, pictures, ...
+             /_finance        you almost always have to hassle with some financial issues.
+             /_ressources     technical issues like programs, datasheets, drawings, machines, ...
+             /_work           something like: plan-do-check iterations,
+             /_docu           documentation of your work, pictures, reports, manuals, ...
              /_arcive         a graveyard for finished subprojects.
              /_stuff          for things that you don't know where else to put.
 
@@ -70,23 +70,24 @@ Principal ideas:
    So we do not care how you name and organize your projects.
    Whether you call them: /computers/mobileXY
                       or: /Devices/myPhone
-   That's completely up to you, but freeDMS always provides you a set of folders like
-   _finance inside your projects if you need it. And it's always _finance and not 
+   That's completely up to you, but freeDMS always provides you a set of sub-folders like
+   _finance or _docu inside your projects if you need it. And it's always _finance and not 
    once called '/Bills' and somewhere else '/Financial issues'.
    So where to put the bill of your cellphone?
    In: /computers/mobileXY/_finance
    Or: /Devices/myPhone/_finance   if you called your projects this way.
+   And a simple search for "_finance" will directly point you to all your financial documents. 
 
 4) Some important features of this structure are: 
-     +) Everybody can understand it immediately.
+     +) Everybody can understand it immediately. (Great for shared drives in companies)
      +) It's easy to communicate. New team members easily find their way.
-     +) There is a clear lay out. (Just a view standard directories in one hierarchy)
+     +) There is a clear lay out. (Just a vew standard directories in one hierarchy)
      +) It's easy to learn. You'll get used to it after a short time.
      +) The hierarchic project structure is always visible in the path.
      +) It's easy to look up all your /_finance documents.
      +) accessrights can be managed automatically
 
-4) There are further levels of standardized directories at your disposal.
+4) There are further levels of standardized directories at your disposal in the next level.
    You can use them if they makes sense to you. Or you can ignore them.
    Example:  /_finance
              /_finance/_insurances
@@ -101,23 +102,34 @@ Principal ideas:
              :
 
 5) Now you could by default fill up each project directory with all 
-   these DMS-directories. This would just make a mess of directories 
-   as you do not need all of them in every project.
+   these DMS-directories. Create a project-template with all the subfolders and just copy and rename it for a new project.
+   But this would just result in a mess of directories as you do not need all of them in every project.
+   Some small projects especially in the beginning of the project just need one simple folder for the vew documents.
+   Maybe one day you like to collect the now growing number of bills in a _finance folder. 
    So the idea is to provide these DMS-directories on demand.
    They are there if you need them, but they're not there by default.
    You should not put your files in the deepest hierarchic level by default.
    Just put your files into a folder of the next level. 
-   If it's getting too crowded in an existing folder, add the next hierarchy level. 
+   If it's getting too crowded in an existing folder, add the next hierarchy level.
+   It would be nice if your filebrowser would support this.
+   Then it could i.E. show the yet not existing subfolders of a project with semitransparent icons. 
+   Once you drop a file into one of these not yet existing folders, the filebrowser simply creates this folder for you.
+   Unfortunately I'm not a filebrowser-programmer, so I did a workaround with scripts as shown in this repository.
 
 6) All these freeDMS-directories are not sacrified. They are ordinary 
    directories at your disposal. You can simply use them and i.e.
    create new directories inside.
    Example:  /_finance/_purchases/urgent
              /_communication/_website/pics
-   You can even make them a project themselfes
-   Example:  /_communication/_website
-             now your Website might be a project on it's own:
+   You can even make them a project themselfs
+   Example:  /_communication/_website <-- make this a new project.
+             now your Website might be a sub-project on it's own:
              /_communication/_website/_finance/_offers
              
-That's it. That's freeDMS. 
+7) Of course you can define your own standard project layout in a template.
+   So if one day you think it would be a nice idea to have an additional "_videos" folder in your "_documentation" ...
+   ... simply add it to your template. 
+   Maybe one day you could even manage multiple templates.
+
+That's it. That's the idea of freeDMS. 
 
