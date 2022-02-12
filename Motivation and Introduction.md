@@ -47,7 +47,7 @@ The trick is to always add the same folders and to establish a universal structu
   * Any software like my mailclient i.e. can read my project structure as it is represented by the path to my project:
     **home/Projects/Family/Holidays/2015_USA_Trip/_communication**
   * Easy handling of permissions: My financial software might have just access to all the _finance folders and subfolders.
-  * When sharing projects or parts of projects with others everyone immediately recognizes the same structures and finds his way.
+  * When sharing projects or parts of projects with others everyone immediately recognizes the same structures and they'll find their  way.
 
 ## An exemple
 Imagine the process of __booking a flight__. Once I've booked my tickets, I often can download them as well as some legal documents and so on. I'm asked in the "save"-dialog where to save all the pdf-files. There I can navigate to my "Travels"-folder or create a new folder like "2015_USA_Trip". That's exactly where I navigate inside my projects hierarchy and create it respecively.
