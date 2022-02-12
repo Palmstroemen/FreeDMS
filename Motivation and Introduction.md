@@ -29,7 +29,7 @@ Each such folder might on his own have some standardized subfolders like
 
     _finance/_purchases
     _finance/_sales
-    _finance/_AppData
+    _finance/_insurances
 
 or like
 
@@ -38,7 +38,6 @@ or like
     _work/_act
     _work/_check
     _work/_learnings
-    _work/_AppData
 
 "When needed" means, that these folders are not always there by default, but they are added on demand.
 The trick is to always add the same folders and to establish a universal structure.
