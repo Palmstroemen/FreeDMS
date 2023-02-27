@@ -50,7 +50,7 @@ The trick is to always add the same folders and to establish a universal structu
   * When sharing projects or parts of projects with others everyone immediately recognizes the same structures and they'll find their  way.
 
 ## An exemple
-Imagine the process of __booking a flight__. Once I've booked my tickets, I often can download them as well as some legal documents and so on. I'm asked in the "save"-dialog where to save all the pdf-files. There I can navigate to my "Travels"-folder or create a new folder like "2015_USA_Trip". That's exactly where I navigate inside my projects hierarchy and create it respecively.
+Imagine the process of __booking a flight__. Once I've booked my tickets, I often can download them as well as some legal documents and so on. I'm asked in the "save"-dialog where to save all the pdf-files. There I can navigate to my "Travels"-folder or create a new folder like "2022_USA_Trip". That's exactly where I navigate inside my projects hierarchy and create it respecively.
 
 The filght-company might one day send tagged documents like:
 * Bill.pdf (tagged with '_finance/_purchases') so it will find its way into the folder **_finance/_purchases**
