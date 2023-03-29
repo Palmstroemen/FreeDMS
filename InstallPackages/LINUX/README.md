@@ -10,4 +10,5 @@ Call the command "__sudo make install__" and enter your password.
 
 After installation you schould find a new app 'CREATE A PROJECT' in your home directory.
 Doubleclick this to create a first project and follow the instructions.
+You then can safely remove all the downloaded and unpacked files and folders.
 
