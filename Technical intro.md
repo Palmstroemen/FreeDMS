@@ -49,4 +49,4 @@ These apps allow for:
 ## Apps:
 All these apps are simple .desktop-files. These are very small files that call a script.
 There are some fancy and tricky things about these app.desktop-files a developer should know.
-See: [tech App-files.md](tech App-files.md)
+See: [tech App-files.md](/Texts/forDeveloppers/tech App-files.md)
