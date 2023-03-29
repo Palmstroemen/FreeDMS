@@ -3,7 +3,7 @@ The LINUX install-packages.
 Installation:______________________________________________
 
 Ubuntu and other LINUX Distributions:
-Download the package and unpack it anywhere on your computer.
+Download the package __freeDMS_install.tar.gz__ and unpack it anywhere on your computer.
 Open a terminal and navigate INto the unpacked directory into the folder __/freeDMS_install__.
 You should see the __freeDMS-license__, the __read.me__ and the __makefile__ there.
 Call the command "__sudo make install__" and enter your password.
