@@ -1,0 +1,38 @@
+**Konzept für ein Betriebssystem zur Projekt- und Dokumentenverwaltung**
+
+**1. Einführung:**
+Das geplante Betriebssystem (OS) soll eine umfassende und flexible Plattform bieten, um verschiedene Projekte effizient zu verwalten und zu organisieren. Es basiert auf einer Kombination aus chaotischer Dateiverwaltung und strukturierten Ordnersystemen und integriert dabei Konzepte wie Zettelkasten und flexible Templates. Ziel ist es, sowohl für persönliche als auch für geschäftliche Nutzung eine robuste und anpassbare Umgebung zu schaffen.
+
+**2. Projektbasierte Organisation:**
+- **Projektstruktur:** Das OS verwendet eine projektbasierte Organisation, bei der alle Dateien und Daten in Projekten strukturiert werden. Jedes Projekt umfasst Bereiche wie Verwaltung, Kommunikation, Finanzen, Legales und Dokumentation.
+- **Vorlagen und Templates:** Für jeden Toplevel-Ordner eines Projektes gibt es ein Template-Modul. Diese Module bieten vordefinierte Strukturen und Ordner wie „Finanzen“, „Kommunikation“ usw. Templates sind standardisiert, können aber an spezielle Bedürfnisse angepasst werden, z.B. für Personen oder Firmen.
+
+**3. Anpassbare Benutzeroberfläche:**
+- **Workspace-Management:** Das OS ermöglicht das Anpassen der Benutzeroberfläche basierend auf dem aktuellen Workspace. Beim Wechsel zwischen Workspaces passen sich nicht nur die Taskleiste, sondern auch das Hintergrundbild und die verfügbaren Tools an.
+- **Werkzeugkonfiguration:** Innerhalb eines Workspaces sind nur die für das jeweilige Projekt benötigten Programme und Tools sichtbar und verfügbar. Beispielsweise werden bei einem Musikprojekt Tools wie DAWs angezeigt, während in einem Finanzprojekt Excel und Buchhaltungssoftware zur Verfügung stehen.
+
+**4. X-Ray-Funktionalität:**
+- **Durchsuchbarkeit von Ordnerstrukturen:** Das OS bietet eine „X-Ray“-Funktion, die es ermöglicht, tief verschachtelte Ordnerstrukturen schnell zu durchsuchen. Die Funktion zeigt Dokumente an, die tief in der Ordnerhierarchie verborgen sind, und ermöglicht einen direkten Zugriff, ohne dass man sich durch viele Unterordner klicken muss.
+- **Dynamische Anzeige:** Nur wenn ein Ordner eine bestimmte Anzahl von Dokumenten überschreitet, werden die Unterordner angezeigt. Dies hilft, die Übersichtlichkeit zu wahren und den Zugriff auf relevante Dokumente zu erleichtern.
+
+**5. Integration und Zugriffsrechte:**
+- **Zugriffsmanagement:** Das System ermöglicht es, Zugriffsrechte basierend auf Ordnerstrukturen zu verwalten. Beispielsweise kann die Finanzabteilung automatisch Zugriff auf alle „Finanzen“-Ordner erhalten.
+- **Integration mit externen Systemen:** Die Struktur des Dateisystems kann von externen Anwendungen wie Buchhaltungssoftware übernommen werden. Das ermöglicht eine nahtlose Integration und Nutzung der bestehenden Dateistruktur.
+
+**6. Personalisierte Templates und Konfiguration:**
+- **Benutzerdefinierte Templates:** Nutzer können eigene Templates erstellen und verwalten. Diese Templates können für verschiedene Projekte oder Personen verwendet werden und ermöglichen eine standardisierte, aber flexible Strukturierung.
+- **Fremdtemplate-Management:** Wenn Projekte von externen Quellen kommen, wie z.B. von einer Firma, können deren Templates übernommen und angepasst werden. Dies geschieht auf dem eigenen Rechner, ohne die persönliche Template-Verwaltung zu beeinträchtigen.
+
+**7. Automatisierung und KI-Integration:**
+- **Automatische Ablage von Dokumenten:** Das OS könnte KI-basierte Funktionen integrieren, um Dokumente automatisch in den entsprechenden Ordnern abzulegen. Beispielsweise könnten Rechnungen automatisch im Ordner „Finanzen“ abgelegt werden, basierend auf dem Inhalt der E-Mails oder Dokumente.
+- **Vorschläge für Unterordner:** Das System schlägt automatisch Unterordner vor, wenn die Anzahl der Dokumente in einem Ordner einen bestimmten Schwellenwert überschreitet.
+
+---
+
+**Nächste Schritte:**
+- **Lösungsansätze:** Diskutiere spezifische technische Anforderungen und Lösungen für die Umsetzung der beschriebenen Funktionen.
+- **Technische Anforderungen:** Definiere die Anforderungen für die Entwicklung und Integration der beschriebenen Funktionen in das Betriebssystem.
+
+---
+
+Dieser Prompt beschreibt die grundlegende Funktionalität des geplanten Betriebssystems. Für spezifische technische Details und Lösungsansätze können wir im nächsten Schritt weiterarbeiten.
